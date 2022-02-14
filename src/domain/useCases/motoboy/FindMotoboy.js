@@ -1,5 +1,5 @@
+//Consulta de motoboy através do id
 class FindMotoboy {
-    //Retorna o motoboy com o id solicitado
 
     constructor(Repository){
         this.repository = Repository;

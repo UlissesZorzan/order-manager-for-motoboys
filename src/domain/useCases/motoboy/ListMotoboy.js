@@ -1,5 +1,5 @@
+//Listagem de motoboys
 class ListMotoboy {
-    //Retorna todos os motoboys cadastrados
 
     constructor(Repository){
         this.repository = Repository;

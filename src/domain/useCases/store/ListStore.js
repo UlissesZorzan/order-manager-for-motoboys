@@ -1,5 +1,5 @@
+//Listagem de lojas
 class ListStore {
-    //Retorna todas as lojas
 
     constructor(Repository){
         this.repository = Repository;

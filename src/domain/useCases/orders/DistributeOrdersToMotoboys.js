@@ -1,3 +1,6 @@
+//Realiza distribuição dos pedidos das lojas para
+//os motoboys disponíveis
+
 class DistributeOrdersToMotoboys {
 
     constructor(storeUseCase, motoboyUseCases){
@@ -6,34 +9,31 @@ class DistributeOrdersToMotoboys {
     }
 
     execute(){
-        let result = [];
-
         let stores = this.storeUseCase.listStore.execute();
         let motoboys = this.motoboyUseCases.listMotoboy.execute();
 
-        //percorre todas as lojas uma a uma, distribuindo os pedidos para os motoboys
-        for( const store in stores ){
-            let motoboysAvailables = this.motoboyUseCases.listMotoboyAvailableForStore.execute(stores[store].id);
+        //percorre todas as lojas uma a uma, distribuindo os pedidos para os motoboys disponíveis para a mesma
+        stores.forEach((store) => {
+            let motoboysAvailables = this.motoboyUseCases.listMotoboyAvailableForStore.execute(store.id);
 
-            let newMotoboysAvailables = [];
+            motoboysAvailables.forEach((motoboyAvailable, index) => {
+                if(store.orders[index]){
+                    const profit = this.calculateProfits(store.orders[index], store.commission, motoboyAvailable.flatRate);
 
-            motoboysAvailables.forEach((motoboy, index) => {
+                    motoboys.forEach((motoboy) => {
+                        if(motoboyAvailable.id == motoboy.id){
+                            motoboy.orders.push({storeId: store.id, price: store.orders[index], profit: profit});
+                            motoboy.profits += profit;
+                        }   
+                    })
+                    
+                }            
+               
+            });           
 
-                if(stores[store].orders[index]){
-                    const profit = this.calculateProfits(stores[store].orders[index], stores[store].commission, motoboy.flatRate);
+        })   
 
-                    motoboy['orders'] = [];
-                    motoboy['orders'].push({price: stores[store].orders[index], profit: profit});
-                }
-                
-                return newMotoboysAvailables.push(motoboy);
-            });
-
-            //faltando juntar os motoboys com pedidos com perfil global do motoboy
-
-        }
-
-        return result;
+        return motoboys;
     }
 
     calculateProfits(orderPrice, commission, flatRate){

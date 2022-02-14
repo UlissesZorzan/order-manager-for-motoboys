@@ -1,6 +1,6 @@
+// Listagem de motoboys disponíveis para determinada loja
+// ordenando de acordo com o fator de exclusividade
 class ListMotoboyAvailableForStore {
-    // Retorna todos os motoboys disponíveis para a loja,
-    // dando preferência para os que possuem exclusividade
 
     constructor(Repository){
         this.repository = Repository;
