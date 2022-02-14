@@ -1,0 +1,36 @@
+{
+    "1": {
+        "id": 1,
+        "name": "Loja 1",
+        "commission": 0.05,
+        "orders": [
+            50,
+            50,
+            50
+        ]
+    },
+
+    "2": {
+        "id": 2,
+        "name": "Loja 2",
+        "commission": 0.05,
+        "orders": [
+            50,
+            50,
+            50,
+            50
+        ]
+    },
+
+    "3": {
+        "id": 3,
+        "name": "Loja 3",
+        "commission": 0.15,
+        "orders": [
+            50,
+            50,
+            100
+        ]
+    }
+
+}
