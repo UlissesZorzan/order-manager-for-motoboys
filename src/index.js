@@ -14,7 +14,10 @@ let interface = readline.createInterface({
 async function ask() {
     return new Promise((resolve, reject) => {
         try {
-            interface.question('Enter input: ', (input) => resolve(input) );
+            interface.question('Digite o ID do motoboy desejado\n'+
+            'ou deixe vazio para listar o perfil de todos motoboys \n'+
+            '(*pressione enter para confirmar): '
+            , (input) => resolve(input) );
         } catch (error) {
             reject("");
         }        
